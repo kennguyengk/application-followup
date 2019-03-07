@@ -2,7 +2,8 @@
 
 class Interview
 {
-	public $title = 'Interview test';
+	// add key word static
+	public static $title = 'Interview test';
 }
 
 $lipsum = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus incidunt, quasi aliquid, quod officia commodi magni eum? Provident, sed necessitatibus perferendis nisi illum quos, incidunt sit tempora quasi, pariatur natus.';
@@ -15,7 +16,16 @@ $people = array(
 	array('id'=>5, 'first_name'=>'Doug', 'last_name'=>'Simons', 'email'=>'doug.simons@hotmail.com')
 );
 
-$person = $_POST['person'];
+// convert records to std class with array_map function
+$people = array_map(function($p){
+
+	return (object)$p;
+},$people);
+
+
+// only pass value when $_GET['person'] is set
+$person = (isset($_GET['person']) ? $_GET['person']:[]);
+
 
 ?>
 
